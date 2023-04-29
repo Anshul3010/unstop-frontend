@@ -1,0 +1,24 @@
+<div class="cm-container">
+    <div class="cm-heading">
+        <div class="cm-title">
+            Welcome
+        </div>
+        <div class="sub-title">
+            Book Tickets Online
+        </div>
+    </div>
+    <div class="main-content">
+        <div class=""> Please Enter Your Details before we start...</div>
+        <div class="cm-form">
+            <mat-form-field appearance="outline" MatFormFieldControl="name">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Ajay..." [formControl]="name">
+                <mat-error *ngIf="name.errors?.required"> Name is Required</mat-error>
+                <mat-error *ngIf="name.errors?.pattern"> Name Must be a String</mat-error>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="actions">
+        <button mat-raised-button [disabled]="name.invalid" (click)="formSubmit()">Submit</button>
+    </div>
+</div>

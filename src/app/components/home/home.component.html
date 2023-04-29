@@ -1,0 +1,71 @@
+<div class="cm-full-body">
+    <div class="cm-container">
+      <div class="cm-columns">
+        <div class="cm-col1">
+          <div class="cm-image">
+            <img src="./../../../assets/images/Train-Transparent-Background.png" alt="" srcset="">
+          </div>
+          <div class="cm-recent" *ngIf="recentlyBooked.length">
+            <span class="cm-text">Last Bookings</span>
+            <ng-container *ngFor="let seat of recentlyBooked" class="cm-booking">
+              <span class="cm-seat cm-booked">
+                {{seat}}
+              </span>
+            </ng-container>
+          </div>
+          <div class="cm-heading">
+            <div class="cm-title">
+              Hi, {{username ? username : 'Customer'}}
+            </div>
+            <div class="cm-sub-title">
+              Please enter number of seats you wish to book
+            </div>
+          </div>
+          <div class="cm-seatCount">
+            <div class="cm-form">
+              <mat-form-field appearance="outline" MatFormFieldControl="name">
+                  <mat-label>Seat Count</mat-label>
+                  <input matInput placeholder="seat count..." name="seatCount" [formControl]="seatCount">
+                  <mat-error *ngIf="seatCount?.errors?.required"> Seat Count is Required</mat-error>
+                  <mat-error *ngIf="seatCount?.errors?.pattern">Invalid count! Seat Count must be between 1 and 7</mat-error>
+                </mat-form-field>
+          </div>
+            <div class="actions">
+              <ng-container>
+                <button mat-raised-button [disabled]="seatCount.invalid" (click)="formSubmit()">Book</button>
+              </ng-container>
+              <ng-container>
+                <button (click)="resetSeats()" matTooltip="Reset all bookings" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                  <mat-icon>refresh</mat-icon>
+                </button>
+              </ng-container>
+          </div>
+          </div>
+        </div>
+        <div class="cm-col2">
+          <div class="cm-col-container">
+            <ng-container *ngIf="!this.seatLoading">
+              <ng-container *ngFor="let row of seatInformation; let i=index">
+                <div class="cm-row">
+                    <ng-container *ngFor="let col of row;let j=index">
+                      <span class="cm-seat" [ngClass]="{'open': !checkReserved(i,j), 'reserved': checkReserved(i,j), 'hide': show(i,j)}" >
+                        {{i+1}}-{{j+1}}
+                      </span>
+                    </ng-container>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="seatLoading">
+              <mat-spinner></mat-spinner>
+            </ng-container>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
