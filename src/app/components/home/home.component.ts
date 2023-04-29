@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit {
 
     }, (err: any) => {
       this.seatLoading=false
-      this.toaster.toast(err.message,'close')
+      this.toaster.toast(err.error.message,'close')
     })
   }
 

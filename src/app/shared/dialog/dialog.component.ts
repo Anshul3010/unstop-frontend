@@ -15,12 +15,9 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.name = new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)] )
-    console.log(this.name)
   }
 
   formSubmit() {
-    console.log(this.name)
     this.dialogRef.close(this.name.value)
-
   }
 }
